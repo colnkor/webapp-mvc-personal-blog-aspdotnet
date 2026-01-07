@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">📚 Мой Блог</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        Все статьи
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-4">
+    @RenderBody()
+</main>
+
+<footer class="bg-light py-3 mt-auto">
+    <div class="container text-center text-muted">
+        &copy; @DateTime.Now.Year - Мой Блог
+    </div>
+</footer>

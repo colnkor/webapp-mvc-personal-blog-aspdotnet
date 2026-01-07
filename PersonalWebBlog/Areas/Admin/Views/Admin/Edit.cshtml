@@ -1,0 +1,46 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "Редактирование: " + Model.Title;
+}
+
+<h1 class="mb-4">Редактирование статьи</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedAt" />
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Заголовок</label>
+                <input asp-for="Title" class="form-control" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label">Содержание</label>
+                <textarea asp-for="Content" class="form-control" rows="10" required></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">
+                    💾 Сохранить изменения
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    Отмена
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Информация</div>
+            <div class="card-body">
+                <p><strong>ID:</strong> @Model.Id</p>
+                <p><strong>Создано:</strong> @Model.CreatedAt.ToString("g")</p>
+            </div>
+        </div>
+    </div>
+</div>

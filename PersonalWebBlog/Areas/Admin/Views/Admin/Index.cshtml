@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Article>
+@{
+    ViewData["Title"] = "Управление статьями";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Управление статьями</h1>
+    <a asp-action="Create" class="btn btn-success">
+        ➕ Создать статью
+    </a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Заголовок</th>
+            <th>Дата создания</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <td>@article.Id</td>
+                <td>@article.Title</td>
+                <td>@article.CreatedAt.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@article.Id"
+                       class="btn btn-sm btn-warning">
+                        ✏️ Редактировать
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Article"
+                       asp-route-id="@article.Id"
+                       class="btn btn-sm btn-info" target="_blank">
+                        👁️ Просмотр
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@article.Id"
+                          method="post" class="d-inline"
+                          onsubmit="return confirm('Удалить статью?')">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            🗑️ Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Статей пока нет. <a asp-action="Create">Создайте первую!</a>
+    </div>
+}

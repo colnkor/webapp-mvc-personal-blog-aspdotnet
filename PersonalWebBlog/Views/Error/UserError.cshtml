@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Ошибка";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="text-center py-5">
+    <h1 class="display-1 text-danger">⚠️</h1>
+    <h2>Ошибка в админ-панели</h2>
+    <p class="text-muted">Произошла ошибка при обработке запроса.</p>
+    <a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="btn btn-dark">
+        Вернуться в админку
+    </a>
+</div>

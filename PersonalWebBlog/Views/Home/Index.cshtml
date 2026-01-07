@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Article>
+@{
+    ViewData["Title"] = "Статьи";
+}
+
+<h1 class="mb-4">Все статьи</h1>
+
+<div class="row">
+    @foreach (var article in Model)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <p class="card-text text-muted">
+                        @(article.Content.Length > 100
+                                            ? article.Content.Substring(0, 100) + "..."
+                                            : article.Content)
+                    </p>
+                    <a asp-action="Article" asp-route-id="@article.Id"
+                       class="btn btn-primary">
+                        Читать далее
+                    </a>
+                </div>
+                <div class="card-footer text-muted">
+                    📅 @article.CreatedAt.ToShortDateString()
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Статей пока нет.
+    </div>
+}
